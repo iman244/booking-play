@@ -8,14 +8,13 @@ import {
     Put,
     Query,
 } from "@nestjs/common";
-import { get } from "http";
 import { HotelService } from "./hotel.service";
 import { Hotel } from "./hotel.type";
 
 @Controller("hotels")
 export class HotelController {
     constructor(private readonly HotelService: HotelService) {}
-    @Post("admin/:id")
+    @Post("admin/create")
     createHotel(@Body() hotel: Hotel) {
         return `create hotel ${hotel}`;
     }

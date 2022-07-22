@@ -1,4 +1,5 @@
 # compiled output
+/admin-panel/node_modules
 /front/node_modules
 /back-nest/dist
 /back-nest/node_modules
