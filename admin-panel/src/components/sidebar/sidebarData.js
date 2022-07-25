@@ -33,16 +33,16 @@ export const sidebarDataIcons_P2 = [
     },
     {
         id: 5,
-        icon: <i className="fa-solid fa-door-open sidebarIcon"></i>,
-        span: "Rooms",
-        to: "/rooms",
+        icon: <i className="fa-solid fa-hotel sidebarIcon"></i>,
+        span: "Hotels",
+        to: "/hotels",
         status: "up",
     },
     {
         id: 6,
-        icon: <i className="fa-solid fa-hotel sidebarIcon"></i>,
-        span: "Hotels",
-        to: "/hotels",
+        icon: <i className="fa-solid fa-door-open sidebarIcon"></i>,
+        span: "Rooms",
+        to: "/rooms",
         status: "up",
     },
 ];

@@ -31,11 +31,17 @@ export class AuthController {
         @Body() body: credentials,
         @Res({ passthrough: true }) response: Response
     ) {
-        const user = await this.AuthService.login(body, response);
-        if (!(user instanceof Error)) {
-            return new UserSerialized(user);
+        const data = await this.AuthService.login(body);
+        if (!(data instanceof Error)) {
+            response.cookie("access_token", data.token, {
+                maxAge: 900000,
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+            });
+            return new UserSerialized(data.user);
         } else {
-            return user;
+            return data;
         }
     }
 }

@@ -3,6 +3,8 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Room } from "src/room/room.type";
 import { Hotel } from "./hotel.type";
+const fs = require("fs");
+const path = require("path");
 
 @Injectable()
 export class HotelService {
@@ -10,9 +12,21 @@ export class HotelService {
         @InjectModel("Hotel") private readonly HotelModel: Model<Hotel>,
         @InjectModel("Room") private readonly RoomModel: Model<Room>
     ) {}
-    async createHotel(id: string, hotel: Hotel) {
+    async createHotel(hotel: Hotel, files: Array<Express.Multer.File>) {
         try {
-            const newHotel = await this.HotelModel.create(hotel);
+            const photoList = files.map((file) => {
+                return {
+                    data: fs.readFileSync(
+                        path.join("uploads/" + file.filename)
+                    ),
+                    contentType: "image/*",
+                };
+            });
+            const newHotelObject = {
+                ...hotel,
+                photos: photoList,
+            };
+            const newHotel = await this.HotelModel.create(newHotelObject);
             return newHotel;
         } catch (error) {
             console.log(error);

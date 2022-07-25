@@ -1,7 +1,9 @@
 # compiled output
 /admin-panel/node_modules
+/admin-panel/*.env
 /front/node_modules
 /back-nest/dist
+/back-nest/*.env
 /back-nest/node_modules
 
 # Logs

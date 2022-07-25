@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable, Res } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Response } from "express";
 import { Model } from "mongoose";
-import { credentials, User } from "src/user/users.type";
+import { credentials, hasToken, User } from "src/user/users.type";
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
@@ -23,10 +23,7 @@ export class AuthService {
         }
     }
 
-    async login(
-        body: credentials,
-        @Res({ passthrough: true }) response: Response
-    ): Promise<Object> {
+    async login(body: credentials) {
         try {
             const { username, password, email } = body;
             const user = await this.UserModel.findOne({ username });
@@ -44,8 +41,7 @@ export class AuthService {
                         process.env.PASS_JWT,
                         { expiresIn: 60 * 60 }
                     );
-                    response.cookie("jwt", token);
-                    return { ...user._doc, token };
+                    return { user: user._doc, token };
                 } else {
                     return new HttpException(
                         "wrong credentials",

@@ -11,8 +11,27 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Hotels from "./pages/hotels/Hotels";
 import Rooms from "./pages/rooms/Rooms";
+import { authFetch } from "./fetch/auth";
+import { useEffect } from "react";
 
 function App() {
+    const credentials = {
+        username: "iman244",
+        password: "123456789",
+    };
+
+    let auth = new authFetch();
+    let login = async () => {
+        try {
+            let user = await auth.login(credentials);
+            console.dir(user);
+        } catch (error) {
+            console.dir(error);
+        }
+    };
+    useEffect(() => {
+        login();
+    }, []);
     return (
         <Router>
             <Topbar />
