@@ -1,4 +1,4 @@
-import { fetchData, fetchDataPhoto } from "./fetch";
+import { fetchData, fetchDataGET, fetchDataPhoto } from "./fetch";
 
 export class hotelFetch {
     uri = "http://127.0.0.1:3000/hotels";
@@ -23,17 +23,22 @@ export class hotelFetch {
     }
 
     async HotelRooms(id) {
-        const data = await fetchData(this.uri + `/rooms/${id}`, "GET");
+        const data = await fetchDataGET(this.uri + `/rooms/${id}`, "GET");
+        return data;
+    }
+
+    async Hotels() {
+        const data = await fetchDataGET(this.uri + `/find/all`, "GET");
         return data;
     }
 
     async HotelInformation(id) {
-        const data = await fetchData(this.uri + `/${id}`, "GET");
+        const data = await fetchDataGET(this.uri + `/find/${id}`, "GET");
         return data;
     }
 
     async HotelSummaries() {
-        const data = await fetchData(this.uri + `/summary`, "GET");
+        const data = await fetchDataGET(this.uri + `/summary`, "GET");
         return data;
     }
 

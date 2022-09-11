@@ -101,6 +101,16 @@ export class HotelService {
         }
     }
 
+    async Hotels() {
+        try {
+            const hotels = await this.HotelModel.find();
+            return hotels;
+        } catch (error) {
+            console.log(error);
+            return new HttpException("error", HttpStatus.BAD_REQUEST);
+        }
+    }
+
     async qHotels(city: string, type: string) {
         try {
             const qHotels = await this.HotelModel.find({

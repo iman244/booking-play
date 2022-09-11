@@ -38,7 +38,6 @@ export class HotelController {
     ) {
         console.log("reached create hotel controller");
         console.log(files);
-        console.log(hotel);
         let newHotel = await this.HotelService.createHotel(hotel, files);
         return "new hotel added successfully";
     }
@@ -58,7 +57,13 @@ export class HotelController {
         return `hotel ${id} rooms capacity`;
     }
 
-    @Get(":id")
+    @Get("find/all")
+    async Hotels() {
+        let hotels = await this.HotelService.Hotels();
+        return hotels;
+    }
+
+    @Get("find/:id")
     HotelInformation(@Param("id") id: string) {
         return `hotel ${id} information`;
     }

@@ -46,10 +46,7 @@ export default function User() {
                         </div>
                         <span className="userShowTitle">Contact Details</span>
                         <div className="userShowInfo">
-                            <i
-                                class="fa-solid fa-mobile-screen"
-                                className="userShowIcon"
-                            ></i>
+                            <i className="fa-solid fa-mobile-screen userShowIcon"></i>
                             <span className="userShowInfoTitle">
                                 +1 123 456 67
                             </span>

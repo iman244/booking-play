@@ -73,7 +73,7 @@ export default function Product() {
                                 className="productUploadImg"
                             />
                             <label for="file">
-                                <i class="fa-solid fa-upload"></i>
+                                <i className="fa-solid fa-upload"></i>
                             </label>
                             <input
                                 type="file"

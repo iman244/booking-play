@@ -24,7 +24,6 @@ function App() {
     let login = async () => {
         try {
             let user = await auth.login(credentials);
-            console.dir(user);
         } catch (error) {
             console.dir(error);
         }
